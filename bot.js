@@ -29,7 +29,7 @@ bot.start(async (ctx) => {
 })
 
 async function checkandSendMessage() {
-    if (horaActual === '08:00') {
+    if (horaActual === '08:20') {
         try {
             const response = await axios.get(
                 'https://cumlaude.ucla.edu.ve/CumLaudeDCYT/',
