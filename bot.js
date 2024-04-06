@@ -21,7 +21,7 @@ bot.start(async (ctx) => {
         .insert({ id: ctx.chat.id })
 
     if (error) {
-        console.log('No se pudo guardar en la base de datos')
+        console.log(`No se pudo guardar en la base de datos ${error}`)
     }
     ctx.reply(
         `Bienvenid@ ${ctx.from.first_name}!, a partir de ahora recibiras notificaciones cada cierto tiempo del estado actual del sistema CumLaude.\nSe ha guardado tu Chat ID: ${ctx.chat.id}`
