@@ -83,7 +83,7 @@ async function checkandSendMessage() {
         }
     }
 }
-setInterval(checkandSendMessage, 40000)
+setInterval(checkandSendMessage, 60000)
 
 bot.command('listar', async (ctx) => {
     const { data, error } = await supabase.from('usuarios').select('id')
