@@ -106,6 +106,9 @@ bot.command('check', (ctx) => {
       }
     } catch (error) {
       console.error(`Error al verificar el sitio ${url}: ${error.message}`)
+      ctx.reply(
+        `Sistema CumLaude fuera de línea, Estatus: 🔴 ${response.status}, toma un café mientras vuelve ☕️\n URL: ${url}`
+      )
     }
   }
   const urlVerificar = 'https://cumlaude.ucla.edu.ve/CumLaudeDCYT/'
