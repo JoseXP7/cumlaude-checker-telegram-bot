@@ -49,28 +49,27 @@ async function checkandSendMessage() {
         }
       }
       recuperarUsuarios()
-    } else if (response.status !== 200) {
-      async function recuperarUsuariosOFF() {
-        const { data, error } = await supabase.from('usuarios').select('id')
-
-        if (error) {
-          console.log('No se pudo recuperar la ID')
-          console.log(error)
-        }
-
-        if (data) {
-          const mensajeOFF = `Sistema CumLaude fuera de línea, Estatus: 🔴 ${response.status}, toma un café mientras vuelve ☕️`
-          const datos = data
-          JSON.stringify(datos)
-          datos.forEach((dato) => {
-            bot.telegram.sendMessage(dato.id, mensajeOFF)
-          })
-        }
-      }
-      recuperarUsuariosOFF()
     }
   } catch (error) {
     console.error(`Error al verificar el sitio: ${error.message}`)
+    async function recuperarUsuariosOFF() {
+      const { data, err } = await supabase.from('usuarios').select('id')
+
+      if (err) {
+        console.log('No se pudo recuperar la ID')
+        console.log(err)
+      }
+
+      if (data) {
+        const mensajeOFF = `Sistema CumLaude fuera de línea 🔴, toma un café mientras vuelve ☕️`
+        const datos = data
+        JSON.stringify(datos)
+        datos.forEach((dato) => {
+          bot.telegram.sendMessage(dato.id, mensajeOFF)
+        })
+      }
+    }
+    recuperarUsuariosOFF()
   }
 }
 const intervaloMilisegundos = 12 * 60 * 60 * 1000
@@ -107,7 +106,7 @@ bot.command('check', (ctx) => {
     } catch (error) {
       console.error(`Error al verificar el sitio ${url}: ${error.message}`)
       ctx.reply(
-        `Sistema CumLaude fuera de línea, toma un café mientras vuelve ☕️\n URL: ${url}`
+        `Sistema CumLaude fuera de línea 🔴, toma un café mientras vuelve ☕️\n URL: ${url}`
       )
     }
   }
